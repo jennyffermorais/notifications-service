@@ -1,0 +1,25 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Vamos definir aqui as tabelas do nosso BD
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// o @id define que é uma primary key
+model Notification {
+  id          String    @id
+  recipientId String // como uma chave estrangeira, referência de outro serviço
+  content     String
+  category    String
+  readAt      DateTime?
+  createdAt   DateTime  @default(now())
+
+  @@index([recipientId]) // índices facilitam encontrar notificações de um recipiente específico
+}
