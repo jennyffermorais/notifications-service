@@ -1,5 +1,5 @@
-import { Notification } from '../../src/application/entities/notification';
-import { NotificationsRepository } from '../../src/application/repositories/notifications-repository';
+import { Notification } from '@application/entities/notification';
+import { NotificationsRepository } from '@application/repositories/notifications-repository';
 
 /* Creating a mock of the notifications repository.
 Bando de dados em memória => Assim que a aplicação reiniciar esses dados somem.
