@@ -1,6 +1,7 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { SendNotification } from 'src/application/use-cases/send-notification';
+import { SendNotification } from '@application/use-cases/send-notification';
 import { CreateNotificationBody } from '../dtos/create-notification-body';
+import { NotificationViewModel } from '../view-models/notification-view-model';
 
 // aqui fica o código que vai definir rotas da aplicação
 
@@ -18,6 +19,9 @@ export class NotificationsController {
       category,
     });
 
-    return { notification };
+    return {
+      // formato que queremos enviar para o front end
+      notification: NotificationViewModel.toHttp(notification),
+    };
   }
 }
