@@ -10,6 +10,9 @@ Database In-Memory
 export class InMemoryNotificationsRepository
   implements NotificationsRepository
 {
+  findManyByRecipientId(recipientId: string): Promise<Notification[]> {
+    throw new Error('Method not implemented.');
+  }
   public notifications: Notification[] = [];
 
   async findById(notificationId: string): Promise<Notification> {
@@ -22,6 +25,12 @@ export class InMemoryNotificationsRepository
     }
 
     return notification;
+  }
+
+  async countManyByRecipientId(recipientId: string): Promise<number> {
+    return this.notifications.filter(
+      (notification) => notification.recipientId === recipientId,
+    ).length;
   }
 
   async create(notification: Notification) {
